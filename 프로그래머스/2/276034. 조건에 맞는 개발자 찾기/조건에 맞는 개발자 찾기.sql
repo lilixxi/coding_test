@@ -1,4 +1,12 @@
-SELECT ID, EMAIL, FIRST_NAME, LAST_NAME
-FROM DEVELOPERS
-WHERE (SKILL_CODE & 256 != 0 OR SKILL_CODE & 1024 != 0)
-ORDER BY ID;
+SELECT
+    DISTINCT id,
+    email,
+    first_name,
+    last_name
+FROM
+    developers d
+    JOIN skillcodes s
+    ON s.name IN ('C#', 'Python')
+    AND d.skill_code & s.code = s.code
+ORDER BY
+    1;
